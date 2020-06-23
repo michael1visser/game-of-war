@@ -2,6 +2,7 @@
 ** GAME FLOW **
 
 START GAME
+    - Create deck
     - Shuffle deck
     - assign cards to both players
 PLAY ROUND
@@ -28,12 +29,10 @@ END GAME
 
 ** GLOBAL VARIABLES **
 
-playerOne - object:
-    - current card total
+playerOne - object: 
     - array of player's hand
 
 playerTwo - object:
-    - current card total
     - array of player's hand
 
 deck - array of 52 cards:
