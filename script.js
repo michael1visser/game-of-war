@@ -126,7 +126,7 @@ function compareCard(card1, player1, card2, player2, position){
        
         collectCards(card1, card2, player1)
 
-       roundWinner(card1, card2, "Player 1", position)
+        roundWinner(card1, card2, "Player 1", position)
 
         playerTotals(player1, player2)
 
@@ -157,9 +157,12 @@ function war(player1, player2){
     cards1 = cards1.concat(player1.splice(0,4))
        // console.log(p1War)
     cards2 = cards2.concat(player2.splice(0,4))
-                                                                                         //console.log(p2War)
+    
+    let position = cards1.length -1
 
-    compareCard(cards1, player1, cards2, player2, 4)
+    console.log(position)
+
+    compareCard(cards1, player1, cards2, player2, position)
 }
 
 //DEFINE FUNCTION TO PLAY A ROUND. RECURRING IF THERE IS WAR
