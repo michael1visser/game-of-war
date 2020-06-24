@@ -108,16 +108,11 @@ function collectCards(card1, card2, player){
 
 //DEFINE FUNCTION TO LOG WHO WON THE ROUND
 
-function roundWinner(card1, card2, player, position){
-
-    console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. ${player} wins!`)
-}
+let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. ${player} wins!`)
 
 //DEFINE FUNCTION TO LOG PLAYER CARD TOTALS
 
-function playerTotals(player1, player2){
-    console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
-}
+let playerTotals = (player1, player2) => console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
 
 //DEFINE FUNCTION TO COMPARE CARDS
 
@@ -160,7 +155,7 @@ function war(player1, player2){
     
     let position = cards1.length -1
 
-    console.log(position)
+    //console.log(position)
 
     compareCard(cards1, player1, cards2, player2, position)
 }
@@ -192,13 +187,4 @@ checkForWinner(playerOne, playerTwo, 52, playRound)
 
 //USE SPREAD OPERATOR (...) ON NEW ARRAYS TO MAKE SURE ORIGINAL ARRAYS ARE NOT AFFECTED BY POP/PUSH/ETC... 
 //CAN I REDUCE DUPLICATE CODE WITH FUNCTION REFERENCES?
-
-
-function testDeck(){
-    createDeck(fullDeck)
-
-shuffleDeck(fullDeck)
-
-divideCards(playerOne, playerTwo, fullDeck)
-}
 
