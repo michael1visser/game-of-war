@@ -33,7 +33,9 @@ for (let i = 0; i < suits.length; i++){
 }
 
 
-//DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
+/* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
+Makes use of the Fisher-Yates algorithm, taken from 
+https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb */
 
 function shuffleDeck(){
     for(let i = deck.length - 1; i > 0; i--){
@@ -43,7 +45,6 @@ function shuffleDeck(){
   deck[j] = temp
 }
 }
-
 
 
 //DEFINE FUNCTION TO DIVIDE CARDS BETWEEN THE TWO PLAYERS
@@ -81,6 +82,55 @@ else {
 }
 }
 
+//DEFINE FUNCTION TO COMPARE CARDS
+
+function compareCard(card1, originDeck1, card2, originDeck2, position){
+    if (card1[position].value > card2[position].value){
+        for (let i=0; i < card1.length; i++){
+            originDeck1.push(card1[i])
+                }
+         for (let j=0; j < card2.length; j++){
+             originDeck1.push(card2[j])
+             }
+        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
+
+        console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
+
+        checkForWinner(originDeck1, originDeck2)
+
+    }
+    else if (card1[position].value < card2[position].value){
+        for (let i=0; i < card1.length; i++){
+        originDeck2.push(card1[i])
+            }
+        for (let j=0; j < card2.length; j++){
+            originDeck2.push(card2[j])
+            }
+        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
+        
+        console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
+
+        checkForWinner(originDeck1, originDeck2)
+    }
+    else {
+        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAR!`)
+        
+        war(card1, originDeck1, card2, originDeck2)
+    }
+}
+
+//DEFINE FUNCTION FOR WAR
+function war(initialCard1, playerOne, initialCard2, playerTwo){
+    let p1War = initialCard1.concat(playerOne.splice(0,4))
+        console.log(p1War)
+    let p2War = initialCard2.concat(playerTwo.splice(0,4))
+    console.log(p2War)
+
+    let warPosition = Math.min(p1War.length, p2War.length) - 1
+        console.log(warPosition)
+    compareCard(p1War, p2War, warPosition)
+}
+
 //DEFINE FUNCTION TO PLAY A ROUND. RECURRING IF THERE IS WAR
 
 function playRound(cardsInPlay1, cardsInPlay2){
@@ -89,57 +139,8 @@ function playRound(cardsInPlay1, cardsInPlay2){
 
     let p2Cards = cardsInPlay2.splice(0,1)
     
+compareCard(p1Cards, playerOne, p2Cards, playerTwo, 0)
 
-/*     cardsInPlay1.shift()
-    cardsInPlay2.shift() */
-
-//DEFINE FUNCTION TO COMPARE CARDS
-
-    function compareCard(card1, card2, position){
-        if (card1[position].value > card2[position].value){
-            for (let i=0; i < card1.length; i++){
-                cardsInPlay1.push(card1[i])
-                    }
-             for (let j=0; j < card2.length; j++){
-                 cardsInPlay1.push(card2[j])
-                 }
-            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
-
-            console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
-
-            checkForWinner(cardsInPlay1, cardsInPlay2)
-
-        }
-        else if (card1[position].value < card2[position].value){
-            for (let i=0; i < card1.length; i++){
-            cardsInPlay2.push(card1[i])
-                }
-            for (let j=0; j < card2.length; j++){
-                cardsInPlay2.push(card2[j])
-                }
-            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
-            
-            console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
-
-            checkForWinner(cardsInPlay1, cardsInPlay2)
-        }
-        else {
-            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAR!`)
-            
-            war(card1, cardsInPlay1, card2, cardsInPlay2)
-        }
-    }
-
-compareCard(p1Cards, p2Cards, 0)
-
-    //DEFINE FUNCTION FOR WAR
-    function war(initialCard1, playerOne, initialCard2, playerTwo){
-        let p1War = initialCard1.concat(playerOne.splice(0,4))
-
-        let p2War = initialCard2.concat(playerTwo.splice(0,4))
-
-        compareCard(p1War, p2War, Math.min(p1War.length, p2War.length) - 1)
-    }
 }
 
    
