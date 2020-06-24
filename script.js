@@ -106,6 +106,19 @@ function collectCards(card1, card2, player){
     }
 }
 
+//DEFINE FUNCTION TO LOG WHO WON THE ROUND
+
+function roundWinner(card1, card2, player, position){
+
+    console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. ${player} wins!`)
+}
+
+//DEFINE FUNCTION TO LOG PLAYER CARD TOTALS
+
+function playerTotals(player1, player2){
+    console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
+}
+
 //DEFINE FUNCTION TO COMPARE CARDS
 
 function compareCard(card1, player1, card2, player2, position){
@@ -113,9 +126,9 @@ function compareCard(card1, player1, card2, player2, position){
        
         collectCards(card1, card2, player1)
 
-        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
+       roundWinner(card1, card2, "Player 1", position)
 
-        console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
+        playerTotals(player1, player2)
 
         checkForWinner(player1, player2, 52, playRound)
 
@@ -124,9 +137,9 @@ function compareCard(card1, player1, card2, player2, position){
         
         collectCards(card1, card2, player1)
         
-        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
+        roundWinner(card1, card2, "Player 2", position)
         
-        console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
+        playerTotals(player1, player2)
 
         checkForWinner(player1, player2, 52, playRound)
     }
