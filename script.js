@@ -94,16 +94,25 @@ else {
 }
 }
 
+//DEFINE FUNCTION FOR WINNER TO COLLECT CARDS
+
+function collectCards(card1, card2, player){
+    for (let i=0; i < card1.length; i++){
+        player.push(card1[i])
+    }
+    
+    for (let j=0; j < card2.length; j++){
+        player.push(card2[j])
+    }
+}
+
 //DEFINE FUNCTION TO COMPARE CARDS
 
 function compareCard(card1, player1, card2, player2, position){
     if (card1[position].value > card2[position].value){
-        for (let i=0; i < card1.length; i++){
-            player1.push(card1[i])
-                }
-         for (let j=0; j < card2.length; j++){
-            player1.push(card2[j])
-             }
+       
+        collectCards(card1, card2, player1)
+
         console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
 
         console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
@@ -112,12 +121,9 @@ function compareCard(card1, player1, card2, player2, position){
 
     }
     else if (card1[position].value < card2[position].value){
-        for (let i=0; i < card1.length; i++){
-            player2.push(card1[i])
-            }
-        for (let j=0; j < card2.length; j++){
-            player2.push(card2[j])
-            }
+        
+        collectCards(card1, card2, player1)
+        
         console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
         
         console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
