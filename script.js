@@ -70,10 +70,10 @@ assignCards(deck, playerTwo)
 //DEFINE FUNCTION TO CHECK FOR A WINNER
 
 function checkForWinner(player1, player2){
-if (player1.length === 52){
+if (player1.length >= 35){
     console.log("Game over! Player 1 wins!")
 }
-else if (player2.length === 52){
+else if (player2.length >= 35){
     console.log("Game over! Player 2 wins!")
 }
 else {
@@ -90,8 +90,8 @@ function playRound(cardsInPlay1, cardsInPlay2){
     let p2Cards = cardsInPlay2.splice(0,1)
     
 
-    cardsInPlay1.shift()
-    cardsInPlay2.shift()
+/*     cardsInPlay1.shift()
+    cardsInPlay2.shift() */
 
 //DEFINE FUNCTION TO COMPARE CARDS
 
@@ -135,12 +135,15 @@ compareCard(p1Cards, p2Cards, 0)
     //DEFINE FUNCTION FOR WAR
     function war(initialCard1, playerOne, initialCard2, playerTwo){
         let p1War = initialCard1.concat(playerOne.splice(0,4))
+        console.log(p1War)
 
         let p2War = initialCard2.concat(playerTwo.splice(0,4))
+        console.log(p2War)
 
-        let arrayLength = Math.min(p1War.length, p2War.length)
+        let arrayLength = Math.min(p1War.length, p2War.length) - 1
+        console.log(arrayLength)
 
-        compareCard(p1War, p2War, 4)
+        compareCard(p1War, p2War, arrayLength)
     }
 }
 
