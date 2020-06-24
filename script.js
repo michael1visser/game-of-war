@@ -7,7 +7,7 @@ let playerOne = []  //Player one's hand throughout the game
 let playerTwo = [] //Player two's hand throughout the game
 
 
-// FUNCTION TO CREATE THE DECK OF 52 CARDS
+//DEFINE FUNCTION TO CREATE THE DECK OF 52 CARDS
 
 function createDeck(){
 for (let i = 0; i < suits.length; i++){
@@ -31,9 +31,9 @@ for (let i = 0; i < suits.length; i++){
     }
 }
 }
-createDeck()
 
-// FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS
+
+//DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
 
 function shuffleDeck(){
     for(let i = deck.length - 1; i > 0; i--){
@@ -44,13 +44,113 @@ function shuffleDeck(){
 }
 }
 
-shuffleDeck()
 
-//FUNCTION TO ASSIGN HALF THE DECK TO EACH PLAYER
 
-function assignCards(deckArray, player){
-    for (let i=0; i < deckArray.length / 2; i++){
-        player.push(deckArray[0])
-        deckArray.shift()
+//DEFINE FUNCTION TO DIVIDE CARDS BETWEEN THE TWO PLAYERS
+
+function divideCards(play1, play2){
+
+//DEFINE FUNCTION TO ASSIGN HALF THE DECK TO A PLAYER
+
+    function assignCards(deckArray, player){
+        let deckLength = deckArray.length / 2
+        for (let i=0; i < 26; i++){
+            player.push(deckArray[0])
+            deckArray.shift()
+        }
+    }
+
+//ASSIGN CARDS TO EACH PLAYER
+
+assignCards(deck, playerOne)
+assignCards(deck, playerTwo)
+
+}
+
+//DEFINE FUNCTION TO CHECK FOR A WINNER
+
+function checkForWinner(player1, player2){
+if (player1.length === 52){
+    console.log("Game over! Player 1 wins!")
+}
+else if (player2.length === 52){
+    console.log("Game over! Player 2 wins!")
+}
+else {
+    playRound(player1, player2)
+}
+}
+
+//DEFINE FUNCTION TO PLAY A ROUND. RECURRING IF THERE IS WAR
+
+function playRound(cardsInPlay1, cardsInPlay2){
+
+    let p1Cards = [cardsInPlay1[0]]
+
+    let p2Cards = [cardsInPlay2[0]]
+    
+
+    cardsInPlay1.shift()
+    cardsInPlay2.shift()
+
+//DEFINE FUNCTION TO COMPARE CARDS
+
+    function compareCard(card1, card2, position){
+        if (card1[position].value > card2[position].value){
+            for (let i=0; i < card1.length; i++){
+                cardsInPlay1.push(card1[i])
+                    }
+             for (let j=0; j < card2.length; j++){
+                 cardsInPlay1.push(card2[j])
+                 }
+            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
+
+            console.log("p1 " + playerOne.length + " p2 " + playerTwo.length)
+
+            checkForWinner(cardsInPlay1, cardsInPlay2)
+
+        }
+        else if (card1[position].value < card2[position].value){
+            for (let i=0; i < card1.length; i++){
+            cardsInPlay2.push(card1[i])
+                }
+            for (let j=0; j < card2.length; j++){
+                cardsInPlay2.push(card2[j])
+                }
+            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
+            
+            console.log("p1 " + playerOne.length + " p2 " + playerTwo.length)
+
+            checkForWinner(cardsInPlay1, cardsInPlay2)
+        }
+        else {
+            console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAR!`)
+            
+            war(card1, cardsInPlay1, card2, cardsInPlay2)
+        }
+    }
+
+compareCard(p1Cards, p2Cards, 0)
+
+    //DEFINE FUNCTION FOR WAR
+    function war(initialCard1, cardsInWar1, initialCard2, cardsInWar2){
+        let p1War = initialCard1.concat(cardsInWar1.splice(0,4))
+
+        let p2War = initialCard2.concat(cardsInWar2.splice(0,4))
+
+        let arrayLength = Math.min(p1War.length, p2War.length)
+
+        compareCard(p1War, p2War, arrayLength)
     }
 }
+
+   
+
+
+createDeck()
+
+shuffleDeck()
+
+divideCards(playerOne, playerTwo)
+
+//checkForWinner(playerOne, playerTwo)
