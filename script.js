@@ -1,3 +1,7 @@
+const playButton = document.getElementById("play-button")
+
+playButton.addEventListener("click", playWar)
+
 const suits = ["Hearts", "Clubs","Diamonds","Spades"]
 
 let fullDeck = [] //Full Deck of cards
@@ -175,3 +179,4 @@ shuffleDeck(fullDeck)
 
 divideCards(playerOne, playerTwo, fullDeck)
 }
+
