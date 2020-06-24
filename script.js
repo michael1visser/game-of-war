@@ -112,7 +112,7 @@ let roundWinner = (card1, card2, player, position) => console.log(`Player 1 play
 
 //DEFINE FUNCTION TO LOG PLAYER CARD TOTALS
 
-let playerTotals = (player1, player2) => console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
+let playerTotals = (player1, player2) => console.log(`Player 1 has ${player1.length} cards. Player 2  has ${player2.length} cards`)
 
 //DEFINE FUNCTION TO COMPARE CARDS
 
