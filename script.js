@@ -85,9 +85,11 @@ assignCards(deck, player2)
 function checkForWinner(player1, player2, winTotal, runRound){
 if (player1.length >= winTotal){
     console.log("Game over! Player 1 wins!")
+    resetGame()
 }
 else if (player2.length >= winTotal){
     console.log("Game over! Player 2 wins!")
+    resetGame()
 }
 else {
     runRound(player1, player2)
@@ -130,7 +132,7 @@ function compareCard(card1, player1, card2, player2, position){
     }
     else if (card1[position].value < card2[position].value){
         
-        collectCards(card1, card2, player1)
+        collectCards(card1, card2, player2)
         
         roundWinner(card1, card2, "Player 2", position)
         
@@ -160,7 +162,7 @@ function war(player1, player2){
     compareCard(cards1, player1, cards2, player2, position)
 }
 
-//DEFINE FUNCTION TO PLAY A ROUND. RECURRING IF THERE IS WAR
+//DEFINE FUNCTION TO PLAY A ROUND.
 
 function playRound(player1, player2){
 
@@ -170,6 +172,13 @@ function playRound(player1, player2){
     
     compareCard(cards1, player1, cards2, player2, 0)
 
+}
+
+//DEFINE FUNCTION TO RESET GAME
+const resetGame = () => {
+    fullDeck = []
+    playerOne = []
+    playerTwo = []
 }
 
    
