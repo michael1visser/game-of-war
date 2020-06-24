@@ -8,9 +8,9 @@ let playerOne = []  //Player one's hand throughout the game
 
 let playerTwo = [] //Player two's hand throughout the game
 
-let cards1  //Cards currently in play for player 1
+let cards1 = [] //Cards currently in play for player 1
 
-let cards2 //Cards currently in play for player 2
+let cards2 = [] //Cards currently in play for player 2
 
 
 //DEFINE FUNCTION TO CREATE THE DECK OF 52 CARDS
@@ -118,19 +118,18 @@ function compareCard(card1, player1, card2, player2, position){
         
         console.log(`player 1 has ${player1.length} cards. p2  has ${player2.length} cards`)
 
-        checkForWinner(player1, player2, 52)
+        checkForWinner(player1, player2, 52, playRound)
     }
     else {
         console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAR!`)
         
-        checkForWinner(player1, player2, 49, war)
+        checkForWinner(player1, player2, 47, war)
         //war(card1, player1, card2, player2)
     }
 }
 
 //DEFINE FUNCTION FOR WAR
 function war(player1, player2){
-
 
     cards1 = cards1.concat(player1.splice(0,4))
        // console.log(p1War)
@@ -144,11 +143,11 @@ function war(player1, player2){
 
 function playRound(player1, player2){
 
-    let cards1 = player1.splice(0,1)
+    cards1 = player1.splice(0,1)
 
-    let cards2 = player2.splice(0,1)
+    cards2 = player2.splice(0,1)
     
-compareCard(cards1, player1, cards2, player2, 0)
+    compareCard(cards1, player1, cards2, player2, 0)
 
 }
 
