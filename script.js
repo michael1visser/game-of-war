@@ -124,7 +124,7 @@ function war(initialCard1, playerOne, initialCard2, playerTwo){
     let p1War = initialCard1.concat(playerOne.splice(0,4))
        // console.log(p1War)
     let p2War = initialCard2.concat(playerTwo.splice(0,4))
-        //console.log(p2War)
+                                                                                         //console.log(p2War)
 
     let warPosition = Math.min(p1War.length, p2War.length) - 1
         //console.log(warPosition)
