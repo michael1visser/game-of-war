@@ -105,7 +105,7 @@ function playRound(cardsInPlay1, cardsInPlay2){
                  }
             console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 1 wins!`)
 
-            console.log("p1 " + playerOne.length + " p2 " + playerTwo.length)
+            console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
 
             checkForWinner(cardsInPlay1, cardsInPlay2)
 
@@ -119,7 +119,7 @@ function playRound(cardsInPlay1, cardsInPlay2){
                 }
             console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. Player 2 wins!`)
             
-            console.log("p1 " + playerOne.length + " p2 " + playerTwo.length)
+            console.log(`player 1 has ${playerOne.length} cards. p2  has ${playerTwo.length} cards`)
 
             checkForWinner(cardsInPlay1, cardsInPlay2)
         }
@@ -135,25 +135,21 @@ compareCard(p1Cards, p2Cards, 0)
     //DEFINE FUNCTION FOR WAR
     function war(initialCard1, playerOne, initialCard2, playerTwo){
         let p1War = initialCard1.concat(playerOne.splice(0,4))
-        console.log(p1War)
 
         let p2War = initialCard2.concat(playerTwo.splice(0,4))
-        console.log(p2War)
 
-        let arrayLength = Math.min(p1War.length, p2War.length) - 1
-        console.log(arrayLength)
-
-        compareCard(p1War, p2War, arrayLength)
+        compareCard(p1War, p2War, Math.min(p1War.length, p2War.length) - 1)
     }
 }
 
    
 
-
+function playWar(){
 createDeck()
 
 shuffleDeck()
 
 divideCards(playerOne, playerTwo)
 
-//checkForWinner(playerOne, playerTwo)
+checkForWinner(playerOne, playerTwo)
+}
