@@ -85,9 +85,9 @@ else {
 
 function playRound(cardsInPlay1, cardsInPlay2){
 
-    let p1Cards = [cardsInPlay1[0]]
+    let p1Cards = cardsInPlay1.splice(0,1)
 
-    let p2Cards = [cardsInPlay2[0]]
+    let p2Cards = cardsInPlay2.splice(0,1)
     
 
     cardsInPlay1.shift()
@@ -133,14 +133,14 @@ function playRound(cardsInPlay1, cardsInPlay2){
 compareCard(p1Cards, p2Cards, 0)
 
     //DEFINE FUNCTION FOR WAR
-    function war(initialCard1, cardsInWar1, initialCard2, cardsInWar2){
-        let p1War = initialCard1.concat(cardsInWar1.splice(0,4))
+    function war(initialCard1, playerOne, initialCard2, playerTwo){
+        let p1War = initialCard1.concat(playerOne.splice(0,4))
 
-        let p2War = initialCard2.concat(cardsInWar2.splice(0,4))
+        let p2War = initialCard2.concat(playerTwo.splice(0,4))
 
         let arrayLength = Math.min(p1War.length, p2War.length)
 
-        compareCard(p1War, p2War, arrayLength)
+        compareCard(p1War, p2War, 4)
     }
 }
 
