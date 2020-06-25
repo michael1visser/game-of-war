@@ -2,11 +2,60 @@ const playButton = document.getElementById("play-button")
 
 playButton.addEventListener("click", playWar)
 
-const suits = ["Hearts", "Clubs","Diamonds","Spades"]
 
-let fullDeck = [] //Full Deck of cards
+class Deck {
+    constructor(){
+        this.deck = []
+    }
+    
+    
+    //DEFINE FUNCTION TO CREATE THE DECK OF 52 CARDS
 
-//let deckSize // Total number of cards in deck
+    createDeck(){
+        //this.deck = []
+        const suits = ["Hearts", "Clubs","Diamonds","Spades"]
+
+        for (let i = 0; i < suits.length; i++){
+            for (let j = 2; j <= 14; j++){
+                if(j === 11){
+                    this.deck.push({name: `Jack of ${suits[i]}`, value: j})
+                }
+            else if (j === 12){
+                this.deck.push({name: `Queen of ${suits[i]}`, value: j})
+            }
+            else if (j === 13){
+                this.deck.push({name: `King of ${suits[i]}`, value: j})
+            }
+            else if (j === 14){
+                this.deck.push({name: `Ace of ${suits[i]}`, value: j})
+            }
+            else {
+                this.deck.push({name: `${j} of ${suits[i]}`, value: j})
+            }
+                
+            }
+        }
+    }  
+    
+    /* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
+    Makes use of the Fisher-Yates algorithm js translation, taken from 
+    https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb */
+
+    shuffleDeck(){
+        for(let i = this.deck.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * i)
+            const temp = deck[i]
+            this.deck[i] = this.deck[j]
+            this.deck[j] = temp
+        }
+    } 
+
+
+}
+
+const firstGame = new Deck([])
+
+let deck = firstGame.deck
 
 let playerOne = []  //Player one's hand throughout the game
 
@@ -17,52 +66,11 @@ let cards1 = [] //Cards currently in play for player 1
 let cards2 = [] //Cards currently in play for player 2
 
 
-//DEFINE FUNCTION TO CREATE THE DECK OF 52 CARDS
-
-function createDeck(deck){
-for (let i = 0; i < suits.length; i++){
-    for (let j = 2; j <= 14; j++){
-        if(j === 11){
-            deck.push({name: `Jack of ${suits[i]}`, value: j})
-        }
-    else if (j === 12){
-        deck.push({name: `Queen of ${suits[i]}`, value: j})
-    }
-    else if (j === 13){
-        deck.push({name: `King of ${suits[i]}`, value: j})
-    }
-    else if (j === 14){
-        deck.push({name: `Ace of ${suits[i]}`, value: j})
-    }
-    else {
-        deck.push({name: `${j} of ${suits[i]}`, value: j})
-    }
-        
-    }
-}
- //deckSize = deck.length /2
-}
-
-
-/* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
-Makes use of the Fisher-Yates algorithm, taken from 
-https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb */
-
-function shuffleDeck(deck){
-    for(let i = deck.length - 1; i > 0; i--){
-  const j = Math.floor(Math.random() * i)
-  const temp = deck[i]
-  deck[i] = deck[j]
-  deck[j] = temp
-}
-}
-
-
 //DEFINE FUNCTION TO DIVIDE CARDS BETWEEN THE TWO PLAYERS
 
-function divideCards(player1, player2, deck){
+let divideCards = (player1, player2, deck) => {
 
-//DEFINE FUNCTION TO ASSIGN HALF THE DECK TO A PLAYER
+    //DEFINE FUNCTION TO ASSIGN HALF THE DECK TO A PLAYER
 
     function assignCards(deck, player){
         //console.log(deckSize)
@@ -73,10 +81,10 @@ function divideCards(player1, player2, deck){
         }
     }
 
-//ASSIGN CARDS TO EACH PLAYER
+    //ASSIGN CARDS TO EACH PLAYER
 
-assignCards(deck, player1)
-assignCards(deck, player2)
+    assignCards(deck, player1)
+    assignCards(deck, player2)
 
 }
 
@@ -96,9 +104,10 @@ else {
 }
 }
 
+
 //DEFINE FUNCTION FOR WINNER TO COLLECT CARDS
 
-function collectCards(card1, card2, player){
+let collectCards = (card1, card2, player) => {
     for (let i=0; i < card1.length; i++){
         player.push(card1[i])
     }
@@ -108,19 +117,26 @@ function collectCards(card1, card2, player){
     }
 }
 
+
+
 //DEFINE FUNCTION TO LOG WHO WON THE ROUND
 
 let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. ${player} wins!`)
+
+
 
 //DEFINE FUNCTION TO LOG PLAYER CARD TOTALS
 
 let playerTotals = (player1, player2) => console.log(`Player 1 has ${player1.length} cards. Player 2  has ${player2.length} cards`)
 
+
+
 //DEFINE FUNCTION TO COMPARE CARDS
 
-function compareCard(card1, player1, card2, player2, position){
+function compareCard(card1, player1, card2, player2, position){ 
+
     if (card1[position].value > card2[position].value){
-       
+    
         collectCards(card1, card2, player1)
 
         roundWinner(card1, card2, "Player 1", position)
@@ -131,7 +147,7 @@ function compareCard(card1, player1, card2, player2, position){
 
     }
     else if (card1[position].value < card2[position].value){
-        
+
         collectCards(card1, card2, player2)
         
         roundWinner(card1, card2, "Player 2", position)
@@ -141,26 +157,14 @@ function compareCard(card1, player1, card2, player2, position){
         checkForWinner(player1, player2, 52, playRound)
     }
     else {
-        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAR!`)
+        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAAAAAAAAAAAR!`)
         
         checkForWinner(player1, player2, 47, war)
-        //war(card1, player1, card2, player2)
+        
     }
 }
 
-//DEFINE FUNCTION FOR WAR
-function war(player1, player2){
 
-    cards1 = cards1.concat(player1.splice(0,4))
-       // console.log(p1War)
-    cards2 = cards2.concat(player2.splice(0,4))
-    
-    let position = cards1.length -1
-
-    //console.log(position)
-
-    compareCard(cards1, player1, cards2, player2, position)
-}
 
 //DEFINE FUNCTION TO PLAY A ROUND.
 
@@ -174,9 +178,24 @@ function playRound(player1, player2){
 
 }
 
+
+
+//DEFINE FUNCTION FOR WAR
+function war(player1, player2){
+
+    cards1 = cards1.concat(player1.splice(0,4))
+
+    cards2 = cards2.concat(player2.splice(0,4))
+
+    let position = cards1.length -1
+
+    compareCard(cards1, player1, cards2, player2, position)
+}
+
+
 //DEFINE FUNCTION TO RESET GAME
 const resetGame = () => {
-    fullDeck = []
+    //deck = []
     playerOne = []
     playerTwo = []
 }
@@ -184,16 +203,15 @@ const resetGame = () => {
    
 
 function playWar(){
-createDeck(fullDeck)
 
-shuffleDeck(fullDeck)
+    firstGame.createDeck()
 
-divideCards(playerOne, playerTwo, fullDeck)
+    firstGame.shuffleDeck()
 
-checkForWinner(playerOne, playerTwo, 52, playRound)
+    divideCards(playerOne, playerTwo, deck)
+
+    checkForWinner(playerOne, playerTwo, 52, playRound)
 }
 
 
-//USE SPREAD OPERATOR (...) ON NEW ARRAYS TO MAKE SURE ORIGINAL ARRAYS ARE NOT AFFECTED BY POP/PUSH/ETC... 
-//CAN I REDUCE DUPLICATE CODE WITH FUNCTION REFERENCES?
 
