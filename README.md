@@ -25,9 +25,9 @@ Open index.html in Chrome and open the javascript console (⌘ + ⌥ + j on Mac)
 
 To play a game, click the "Play WAR" button in your browser. The game results will print out in the console. 
 
-To play another game, simply click the "Play War" button again to reset the deck and run through a new game. 
+To play another game, simply click the "Play WAR" button again to reset the deck and run through a new game. 
 
-If you receive an _Uncaught RangeError: Maximum call stack size exceeded_ , refresh the browser window and click the "Play WAR" button again to start a new game. 
+If you receive an _Uncaught RangeError: Maximum call stack size exceeded_ error, refresh the browser window and click the "Play WAR" button again to start a new game. 
 
 ## Acknowledgements
 
