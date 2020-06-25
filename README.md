@@ -1,5 +1,5 @@
- Mike Visser's Game of WAR!
- ==========================
+ # :medal_military: Mike Visser's Game of WAR! :medal_military:
+ 
 
 ## Introduction 
 
@@ -11,15 +11,15 @@ To play war, each player places three cards on the table face down, and then pla
 
 The game ends when one player has all 52 cards, or if one player does not have enough cards to play War.
 
-##Prerequisites
+## Prerequisites
 
-* You must have Chrome browser installed and know how to access the developer console (⌘ + ⌥ + j on Mac).
+* You must have Chrome browser installed and be able to access the developer console (⌘ + ⌥ + j on Mac).
 
 ## Installation
 
 To install Game of WAR! download the index.html and script.js files to your computer. Be sure to save them in the same directory (aka folder).
 
-Open index.html in Chrome and open the javascript console (⌘ + ⌥ + j).
+Open index.html in Chrome and open the javascript console (⌘ + ⌥ + j on Mac).
 
 ## Playing a Game
 
@@ -34,6 +34,10 @@ If you receive an _Uncaught RangeError: Maximum call stack size exceeded_ , refr
 * Many thanks to Roger and Noah for teaching me Javascript.
 * Explanation of the Fisher-Yates algorithm and Javascript translation that form the bones of the game deck shuffle fuction came from:
     https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+* Readme template help from:
+    https://dev.to/scottydocs/how-to-write-a-kickass-readme-5af9
+* Emoji markdown shortcodes found at:
+    https://github.com/ikatyang/emoji-cheat-sheet
 
 ### Contact me
 https://github.com/michael1visser
