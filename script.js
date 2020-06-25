@@ -38,7 +38,7 @@ class Deck {
     }  
     
     /* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
-    Makes use of the Fisher-Yates algorithm js translation, taken from 
+    Makes use of the Fisher-Yates algorithm js translation described in: 
     https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb */
 
     shuffleDeck(){

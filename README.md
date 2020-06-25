@@ -1,0 +1,39 @@
+ Mike Visser's Game of WAR!
+ ==========================
+
+## Introduction 
+
+Game of war is a program designed to simulate the card game War with two computer players. The program creates and distributes a deck of cards, after which the two computer players rounds of the game. 
+
+For a round, each player reveals the next card in their hand. Whichever player's card has a higher value wins the two cards. If the two players values match, they play War. 
+
+To play war, each player places three cards on the table face down, and then places a fourth card on the table face up. The player with the higher card value wins all the cards on the table. 
+
+The game ends when one player has all 52 cards, or if one player does not have enough cards to play War.
+
+##Prerequisites
+
+* You must have Chrome browser installed and know how to access the developer console (⌘ + ⌥ + j on Mac).
+
+## Installation
+
+To install Game of WAR! download the index.html and script.js files to your computer. Be sure to save them in the same directory (aka folder).
+
+Open index.html in Chrome and open the javascript console (⌘ + ⌥ + j).
+
+## Playing a Game
+
+To play a game, click the "Play WAR" button in your browser. The game results will print out in the console. 
+
+To play another game, simply click the "Play War" button again to reset the deck and run through a new game. 
+
+If you receive an _Uncaught RangeError: Maximum call stack size exceeded_ , refresh the browser window and click the "Play WAR" button again to start a new game. 
+
+## Acknowledgements
+
+* Many thanks to Roger and Noah for teaching me Javascript.
+* Explanation of the Fisher-Yates algorithm and Javascript translation that form the bones of the game deck shuffle fuction came from:
+    https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+
+### Contact me
+https://github.com/michael1visser
