@@ -27,7 +27,7 @@ createDeck(){
     firstGame = new Deck()
     for (let i=0; i < firstGame.suits.length; i++){
         for (let j=0; j < 13; j++){
-            firstGame.cards.push(new Card(firstGame.suits[i], firstGame.ranks[j], i+2))
+            firstGame.cards.push(new Card(firstGame.suits[i], firstGame.ranks[j], j+2))
         }
     }
  }
@@ -77,8 +77,8 @@ let divideCards = (player1, player2, deck) => {
 
     //ASSIGN CARDS TO EACH PLAYER
 
-    assignCards(firstGame.cards, player1)
-    assignCards(firstGame.cards, player2)
+    assignCards(deck, player1)
+    assignCards(deck, player2)
 
 }
 
@@ -115,7 +115,7 @@ let collectCards = (card1, card2, player) => {
 
 //DEFINE FUNCTION TO LOG WHO WON THE ROUND
 
-let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. ${player} wins!`)
+let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. ${player} wins!`)
 
 
 
@@ -129,7 +129,7 @@ let playerTotals = (player1, player2) => console.log(`Player 1 has ${player1.len
 
 function compareCard(card1, player1, card2, player2, position){ 
 
-    if (card1[position].value > card2[position].value){
+    if (card1[position].score > card2[position].score){
     
         collectCards(card1, card2, player1)
 
@@ -140,7 +140,7 @@ function compareCard(card1, player1, card2, player2, position){
         checkForWinner(player1, player2, 52, playRound)
 
     }
-    else if (card1[position].value < card2[position].value){
+    else if (card1[position].score < card2[position].score){
 
         collectCards(card1, card2, player2)
         
@@ -151,7 +151,7 @@ function compareCard(card1, player1, card2, player2, position){
         checkForWinner(player1, player2, 52, playRound)
     }
     else {
-        console.log(`Player 1 plays ${card1[position].name}, Player 2 plays ${card2[position].name}. WAAAAAAAAAAAAAAAAAR!`)
+        console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. WAAAAAAAAAAAAAAAAAR!`)
         
         checkForWinner(player1, player2, 47, war)
         
@@ -202,7 +202,7 @@ function playWar(){
 
     firstGame.shuffleDeck()
 
-    divideCards(playerOne, playerTwo, deck)
+    divideCards(playerOne, playerTwo, firstGame.cards)
 
     checkForWinner(playerOne, playerTwo, 52, playRound)
 }
