@@ -3,59 +3,53 @@ const playButton = document.getElementById("play-button")
 playButton.addEventListener("click", playWar)
 
 
+
+class Card {
+    constructor(suit, rank, score){
+       this.suit = suit
+       this.rank = rank
+       this.score = score
+    }
+
+}
+
 class Deck {
     constructor(){
-        this.deck = []
+        this.decklength = 52
+        this.cards = []
+        this.suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
+        this.ranks = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King","Ace"]
     }
-    
-    
-    //DEFINE FUNCTION TO CREATE THE DECK OF 52 CARDS
 
-    createDeck(){
-        //this.deck = []
-        const suits = ["Hearts", "Clubs","Diamonds","Spades"]
+    //DEFINE FUNCTION TO CREATE DECK
 
-        for (let i = 0; i < suits.length; i++){
-            for (let j = 2; j <= 14; j++){
-                if(j === 11){
-                    this.deck.push({name: `Jack of ${suits[i]}`, value: j})
-                }
-            else if (j === 12){
-                this.deck.push({name: `Queen of ${suits[i]}`, value: j})
-            }
-            else if (j === 13){
-                this.deck.push({name: `King of ${suits[i]}`, value: j})
-            }
-            else if (j === 14){
-                this.deck.push({name: `Ace of ${suits[i]}`, value: j})
-            }
-            else {
-                this.deck.push({name: `${j} of ${suits[i]}`, value: j})
-            }
-                
-            }
+createDeck(){
+    firstGame = new Deck()
+    for (let i=0; i < firstGame.suits.length; i++){
+        for (let j=0; j < 13; j++){
+            firstGame.cards.push(new Card(firstGame.suits[i], firstGame.ranks[j], i+2))
         }
-    }  
-    
-    /* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
+    }
+ }
+
+  /* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
     Makes use of the Fisher-Yates algorithm js translation described in: 
     https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb */
 
     shuffleDeck(){
-        for(let i = this.deck.length - 1; i > 0; i--){
+        for(let i = this.cards.length - 1; i > 0; i--){
             const j = Math.floor(Math.random() * i)
-            const temp = deck[i]
-            this.deck[i] = this.deck[j]
-            this.deck[j] = temp
+            const temp = this.cards[i]
+            this.cards[i] = this.cards[j]
+            this.cards[j] = temp
         }
     } 
-
-
 }
 
-const firstGame = new Deck([])
+let firstGame = new Deck()
 
-let deck = firstGame.deck
+
+let deck = firstGame.cards
 
 let playerOne = []  //Player one's hand throughout the game
 
@@ -83,8 +77,8 @@ let divideCards = (player1, player2, deck) => {
 
     //ASSIGN CARDS TO EACH PLAYER
 
-    assignCards(deck, player1)
-    assignCards(deck, player2)
+    assignCards(firstGame.cards, player1)
+    assignCards(firstGame.cards, player2)
 
 }
 
