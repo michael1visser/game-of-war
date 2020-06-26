@@ -22,15 +22,14 @@ class Deck {
     }
 
     //DEFINE FUNCTION TO CREATE DECK
-
+   
 createDeck(){
-    firstGame = new Deck()
-    for (let i=0; i < firstGame.suits.length; i++){
+    for (let i=0; i < this.suits.length; i++){
         for (let j=0; j < 13; j++){
-            firstGame.cards.push(new Card(firstGame.suits[i], firstGame.ranks[j], j+2))
+            this.cards.push(new Card(this.suits[i], this.ranks[j], j+2))
         }
     }
- }
+ } 
 
   /* DEFINE FUNCTION TO SHUFFLE(RANDOMIZE) THE DECK OF CARDS. 
     Makes use of the Fisher-Yates algorithm js translation described in: 
