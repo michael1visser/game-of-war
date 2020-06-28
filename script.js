@@ -86,12 +86,12 @@ let divideCards = (player1, player2, deck) => {
 //DEFINE FUNCTION TO CHECK FOR A WINNER
 
 function checkForWinner(player1, player2, winTotal, runRound){
-if (player1.cards.length >= winTotal){
-    console.log("Game over! Player 1 wins!")
+if (player2.cards.length <= winTotal){
+    console.log("Game over! Player 1 wins! Click Play WAR! to play again.")
     resetGame()
 }
-else if (player2.cards.length >= winTotal){
-    console.log("Game over! Player 2 wins!")
+else if (player1.cards.length <= winTotal){
+    console.log("Game over! Player 2 wins! Click Play WAR! to play again.")
     resetGame()
 }
 else {
@@ -117,7 +117,7 @@ let collectCards = (card1, card2, player) => {
 
 //DEFINE FUNCTION TO LOG WHO WON THE ROUND
 
-let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. ${player} wins!`)
+let roundWinner = (card1, card2, player, position) => console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. ${player} wins! `)
 
 
 
@@ -133,29 +133,29 @@ function compareCard(card1, player1, card2, player2, position){
 
     if (card1[position].score > card2[position].score){
     
-        //collectCards(card1, card2, player1)
+        collectCards(card1, card2, player1)
 
         roundWinner(card1, card2, "Player 1", position)
 
         playerTotals(player1, player2)
 
-        //checkForWinner(player1, player2, 52, playRound)
+        checkForWinner(player1, player2, 1, playRound)
 
     }
     else if (card1[position].score < card2[position].score){
 
-        //collectCards(card1, card2, player2)
+        collectCards(card1, card2, player2)
         
         roundWinner(card1, card2, "Player 2", position)
         
         playerTotals(player1, player2)
 
-        //checkForWinner(player1, player2, 52, playRound)
+        checkForWinner(player1, player2, 1, playRound)
     }
     else {
         console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. WAAAAAAAAAAAAAAAAAR!`)
         
-        //checkForWinner(player1, player2, 47, war)
+        checkForWinner(player1, player2, 5, war)
         
     }
 }
