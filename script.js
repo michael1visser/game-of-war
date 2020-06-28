@@ -14,8 +14,8 @@ class Card {
 }
 
 class Deck {
-    constructor(){
-        this.decklength = 52
+    constructor(deckLength){
+        this.deckLength = deckLength
         this.cards = []
         this.suits = ["Hearts", "Spades", "Diamonds", "Clubs"]
         this.ranks = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King","Ace"]
@@ -45,18 +45,20 @@ createDeck(){
     } 
 }
 
-let firstGame = new Deck()
+let firstGame = new Deck(52)
 
 
 let deck = firstGame.cards
 
-let playerOne = []  //Player one's hand throughout the game
+let playerOne = new Deck(26)  //Player one's hand throughout the game
 
-let playerTwo = [] //Player two's hand throughout the game
+let playerTwo = new Deck(26) //Player two's hand throughout the game
 
 let cards1 = [] //Cards currently in play for player 1
 
 let cards2 = [] //Cards currently in play for player 2
+
+let pot = new Deck(0)
 
 
 //DEFINE FUNCTION TO DIVIDE CARDS BETWEEN THE TWO PLAYERS
@@ -68,8 +70,8 @@ let divideCards = (player1, player2, deck) => {
     function assignCards(deck, player){
         //console.log(deckSize)
 
-        for (let i=0; i < 26; i++){
-            player.push(deck[0])
+        for (let i=0; i < player.deckLength; i++){
+            player.cards.push(deck[0])
             deck.shift()
         }
     }
@@ -84,11 +86,11 @@ let divideCards = (player1, player2, deck) => {
 //DEFINE FUNCTION TO CHECK FOR A WINNER
 
 function checkForWinner(player1, player2, winTotal, runRound){
-if (player1.length >= winTotal){
+if (player1.cards.length >= winTotal){
     console.log("Game over! Player 1 wins!")
     resetGame()
 }
-else if (player2.length >= winTotal){
+else if (player2.cards.length >= winTotal){
     console.log("Game over! Player 2 wins!")
     resetGame()
 }
@@ -101,13 +103,14 @@ else {
 //DEFINE FUNCTION FOR WINNER TO COLLECT CARDS
 
 let collectCards = (card1, card2, player) => {
-    for (let i=0; i < card1.length; i++){
-        player.push(card1[i])
+    
+    pot.cards = card1.concat(card2)
+    pot.shuffleDeck()
+
+    for (let i=0; i < pot.length; i++){
+        player.cards.push(pot.cards[i])
     }
     
-    for (let j=0; j < card2.length; j++){
-        player.push(card2[j])
-    }
 }
 
 
@@ -120,7 +123,7 @@ let roundWinner = (card1, card2, player, position) => console.log(`Player 1 play
 
 //DEFINE FUNCTION TO LOG PLAYER CARD TOTALS
 
-let playerTotals = (player1, player2) => console.log(`Player 1 has ${player1.length} cards. Player 2  has ${player2.length} cards`)
+let playerTotals = (player1, player2) => console.log(`Player 1 has ${player1.cards.length} cards. Player 2  has ${player2.cards.length} cards`)
 
 
 
@@ -130,29 +133,29 @@ function compareCard(card1, player1, card2, player2, position){
 
     if (card1[position].score > card2[position].score){
     
-        collectCards(card1, card2, player1)
+        //collectCards(card1, card2, player1)
 
         roundWinner(card1, card2, "Player 1", position)
 
         playerTotals(player1, player2)
 
-        checkForWinner(player1, player2, 52, playRound)
+        //checkForWinner(player1, player2, 52, playRound)
 
     }
     else if (card1[position].score < card2[position].score){
 
-        collectCards(card1, card2, player2)
+        //collectCards(card1, card2, player2)
         
         roundWinner(card1, card2, "Player 2", position)
         
         playerTotals(player1, player2)
 
-        checkForWinner(player1, player2, 52, playRound)
+        //checkForWinner(player1, player2, 52, playRound)
     }
     else {
         console.log(`Player 1 plays ${card1[position].rank} of ${card1[position].suit}, Player 2 plays ${card2[position].rank} of ${card2[position].suit}. WAAAAAAAAAAAAAAAAAR!`)
         
-        checkForWinner(player1, player2, 47, war)
+        //checkForWinner(player1, player2, 47, war)
         
     }
 }
@@ -163,9 +166,9 @@ function compareCard(card1, player1, card2, player2, position){
 
 function playRound(player1, player2){
 
-    cards1 = player1.splice(0,1)
+    cards1 = player1.cards.splice(0,1)
 
-    cards2 = player2.splice(0,1)
+    cards2 = player2.cards.splice(0,1)
     
     compareCard(cards1, player1, cards2, player2, 0)
 
@@ -176,9 +179,9 @@ function playRound(player1, player2){
 //DEFINE FUNCTION FOR WAR
 function war(player1, player2){
 
-    cards1 = cards1.concat(player1.splice(0,4))
+    cards1 = cards1.concat(player1.cards.splice(0,4))
 
-    cards2 = cards2.concat(player2.splice(0,4))
+    cards2 = cards2.concat(player2.cards.splice(0,4))
 
     let position = cards1.length -1
 
@@ -189,8 +192,8 @@ function war(player1, player2){
 //DEFINE FUNCTION TO RESET GAME
 const resetGame = () => {
     //deck = []
-    playerOne = []
-    playerTwo = []
+    playerOne.cards = []
+    playerTwo.cards = []
 }
 
    

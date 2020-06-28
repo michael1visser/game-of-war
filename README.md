@@ -3,9 +3,9 @@
 
 ## Introduction 
 
-Game of war is a program designed to simulate the card game War with two computer players. The program creates and distributes a deck of cards, after which the two computer players rounds of the game. 
+Game of war is a program designed to simulate the card game War with two computer players. The program creates and distributes a deck of cards, after which the two computer players play rounds of the game. 
 
-For a round, each player reveals the next card in their hand. Whichever player's card has a higher value wins the two cards. If the two players values match, they play War. 
+For a round, each player reveals the next card in their hand. Whichever player's card has a higher value wins the two cards. If the two players' card values match, they play War. 
 
 To play war, each player places three cards on the table face down, and then places a fourth card on the table face up. The player with the higher card value wins all the cards on the table. 
 
