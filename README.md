@@ -23,7 +23,7 @@ Open index.html in Chrome and open the javascript console (⌘ + ⌥ + j on Mac)
 
 ## Playing a Game
 
-To play a game, click the "Play WAR" button in your browser. The game results will print out in the console. 
+To play a game, click the "Play WAR" button on the index.html page. The game results will print out in the console. 
 
 To play another game, simply click the "Play WAR" button again to reset the deck and run through a new game. (Tip: To make each game easier to follow, type ⌘ + k in the console to clear the console log before running your next game.)
 
