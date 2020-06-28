@@ -107,7 +107,7 @@ let collectCards = (card1, card2, player) => {
     pot.cards = card1.concat(card2)
     pot.shuffleDeck()
 
-    for (let i=0; i < pot.length; i++){
+    for (let i=0; i < pot.cards.length; i++){
         player.cards.push(pot.cards[i])
     }
     
