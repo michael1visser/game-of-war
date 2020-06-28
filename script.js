@@ -86,11 +86,11 @@ let divideCards = (player1, player2, deck) => {
 //DEFINE FUNCTION TO CHECK FOR A WINNER
 
 function checkForWinner(player1, player2, winTotal, runRound){
-if (player2.cards.length <= winTotal){
+if (player2.cards.length < winTotal){
     console.log("Game over! Player 1 wins! Click Play WAR! to play again.")
     resetGame()
 }
-else if (player1.cards.length <= winTotal){
+else if (player1.cards.length < winTotal){
     console.log("Game over! Player 2 wins! Click Play WAR! to play again.")
     resetGame()
 }
@@ -206,7 +206,7 @@ function playWar(){
 
     divideCards(playerOne, playerTwo, firstGame.cards)
 
-    checkForWinner(playerOne, playerTwo, 52, playRound)
+    checkForWinner(playerOne, playerTwo, 1, playRound)
 }
 
 
